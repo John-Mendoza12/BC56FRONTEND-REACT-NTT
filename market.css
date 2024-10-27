@@ -36,7 +36,8 @@
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     overflow: hidden;           
     width: 350px;              
-    text-align: left;         
+    text-align: left;  
+    margin-bottom: 20px;       
 }
 .button{
     background-color: #007bff;  
@@ -56,6 +57,7 @@
 .containerCard{
     display: flex;
     justify-content: space-evenly;
+    flex-wrap: wrap; 
 }
 .img{
     max-width: 350px;
@@ -117,6 +119,9 @@
 }
 .navbarRes{
  display:none;
+}
+.shop{
+    display: flex;
 }
 @media (max-width: 768px) {
 
