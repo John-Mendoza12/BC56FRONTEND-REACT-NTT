@@ -1,0 +1,111 @@
+.header{
+    background-color: black;
+    color: wheat;
+    padding: 10px;
+}
+.conatinerTable{
+    width: 100%;
+   padding-top: 10px;
+    display: flex;
+    justify-content: center;
+
+}
+.table{
+    width: 90%;
+    border-collapse: collapse;
+}
+.Cell {
+    padding: '10px';
+    border-bottom: '1px solid #ddd';
+    text-align: 'center';
+    border: 1px solid black; 
+  }
+.delete{
+    background-color: #ff4444;
+    color: whitesmoke;
+    cursor: pointer;
+    border-radius: 4px; 
+    border: none;
+    padding: 8px 16px;
+}
+.updown {
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ gap: '10px';
+}
+.count{
+    border-radius :'4px';
+    cursor: 'pointer';
+    border: none;
+    background-color: #007bff;  
+    color: white;
+    padding: 5px 15px;
+}
+.span{
+    margin: 0 10px;
+}
+.image{
+    display: block;
+    margin: 0 auto
+}
+
+.cardForm{
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    width: 50%;
+    display:flex;
+    justify-content: center;
+    flex-direction: column;
+}
+.cardForm h2{
+text-align: center;
+margin-top: 20px;
+
+}
+form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.form-group{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+     
+}
+.form-group input,
+.form-group select {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    padding: 8px;
+  
+}
+
+.but-form{
+    background-color: #4CAF50;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    display: block;
+    color: white;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 100%;
+}
+.center{
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+.footer-table{
+  border-top: 2px solid black;
+  margin-top: 10px;
+  display: flex;
+  justify-content: flex-end;
+  margin-left: 70px;
+  width: 90%;
+
+}

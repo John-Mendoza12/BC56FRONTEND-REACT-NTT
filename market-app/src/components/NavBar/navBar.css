@@ -18,9 +18,7 @@
     width: 8vw;
     justify-content: space-between;
 }
-p{
-    color: red;
-}
+
 .textContainer{
     display: flex;
     align-items: center;

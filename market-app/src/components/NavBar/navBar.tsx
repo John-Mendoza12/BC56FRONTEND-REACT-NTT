@@ -1,11 +1,15 @@
 
+import { useShopContext } from '../../context/shopListContext';
 import './navBar.css';
 
-interface IAPP{
-    count:number;
-}
 
-export const NavBar=(props:IAPP)=>{
+interface INav{
+    setCheckSta:React.Dispatch<React.SetStateAction<boolean>>
+
+}
+export const NavBar=(props:INav)=>{
+    const { array } = useShopContext();
+    const total = array.reduce((sum, item) => sum + item.quantity, 0);
     return (
      <> 
     <nav className="navbar">
@@ -18,8 +22,10 @@ export const NavBar=(props:IAPP)=>{
         
         </div>
         <div className="shop">
+        <button style={{backgroundColor:'transparent'}} onClick={()=>{props.setCheckSta(true)} }>
         <img src="shopping-cart.png"  className="logo" alt='market'/>
-        <p>{props.count}</p>
+        </button>
+        <p>{total}</p>
         </div>
 
     </nav>

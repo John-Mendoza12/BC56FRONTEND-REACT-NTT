@@ -1,5 +1,5 @@
-import { Footer } from "../../components/Footer/footer"
-import { NavBar } from "../../components/NavBar/navBar"
+
+
 import { ProductHook } from "../../hooks/productHook"
 
 
@@ -7,9 +7,10 @@ import "./products.css"
 
 
 export const Products=()=>{
-    const {products,categories,Add,count,ChangeText,ChangeCategory} = ProductHook()
+    const {products,categories,Add,ChangeText,ChangeCategory} = ProductHook()
+    
     return(
-    <><NavBar count={count}></NavBar>
+    <>
     <div className="body">
         <div className="container">
             <input type="text" id="search" placeholder="Buscar productos..." className="input-producto" onChange={ChangeText}/>
@@ -34,12 +35,12 @@ export const Products=()=>{
                 </div>
                 <h2>Precio: S/{item.price}</h2>
                 <div className="buttonDiv">
-                    <button className="button" onClick={Add}>Agregar al carrito</button>
+                    <button className="button" onClick={()=>{ Add(item)}}>Agregar al carrito</button>
                 </div>
             </div>
             ))}
         </div>
     </div>
-    <Footer></Footer></>)
+</>)
 
 }
