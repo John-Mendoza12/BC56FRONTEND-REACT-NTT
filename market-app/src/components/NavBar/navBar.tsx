@@ -1,5 +1,6 @@
 
 import { useShopContext } from '../../context/shopListContext';
+import { TokenHook } from '../../hooks/TokenHook';
 import './navBar.css';
 
 
@@ -9,6 +10,7 @@ interface INav{
 }
 export const NavBar=(props:INav)=>{
     const { array } = useShopContext();
+    const {getUserData,logOut}=TokenHook()
     const total = array.reduce((sum, item) => sum + item.quantity, 0);
     return (
      <> 
@@ -26,6 +28,11 @@ export const NavBar=(props:INav)=>{
         <img src="shopping-cart.png"  className="logo" alt='market'/>
         </button>
         <p>{total}</p>
+        </div>
+        <div>
+            <p style={{color:'whitesmoke'}}>Bienvenido: {getUserData()?.username}</p>
+            <button style={{background:'transparent',color:'white',boxShadow:'none'}} onClick={logOut}>Cerrar Sesión</button>
+          
         </div>
 
     </nav>

@@ -3,10 +3,12 @@ import { ICategory, IProduct } from "../interfaces/IProduct"
 import { productsService } from "../services/productsService"
 import { useShopContext } from "../context/shopListContext"
 import { IShop } from "../interfaces/ISummary"
+import { PaginationHook } from "./paginationHook"
 
 export const ProductHook=()=>{
     const [products,setProducts]=useState<IProduct[]>([])
     const [data,setData]=useState<IProduct[]>([])
+    const {Pagination,nextPage,previousPage,itemsPerPage,setCurrentPage}= PaginationHook()
     const [categories,setCategories]=useState<ICategory[]>([])
     const [selectedCategory,setSelectedCategory]=useState("all")
     const [searchText,setSearchText]=useState("")
@@ -14,7 +16,8 @@ export const ProductHook=()=>{
     const getProducts=async ()=>{
         try {
           const data = await productsService.getProducts()
-          setProducts(data.products) 
+          const pages = Pagination(data.products)
+          setProducts(pages) 
           setData(data.products)
         }catch (error) {
         console.error("Error al cargar productos",error);
@@ -59,11 +62,29 @@ export const ProductHook=()=>{
         const filtered = data.filter(product => {
             const matchesCategory = selectedCategory === "all" || product.category === selectedCategory;
             const matchesSearch = product.title.toLowerCase().includes(searchText.toLowerCase());
+            setCurrentPage(1)
             return matchesCategory && matchesSearch;
         });
-        setProducts(filtered)
+        const pages = Pagination(filtered)
+        setProducts(pages) 
 
     }
+
+    const next=()=>{
+        const number = nextPage()
+        const start = (number-1)*itemsPerPage
+        const end = start+itemsPerPage
+        setProducts(data.slice(start, end)) ;
+    }
+    const previous=()=>{
+        const number = previousPage()
+        const start = (number-1)*itemsPerPage
+        const end = start+itemsPerPage
+        setProducts(data.slice(start, end)) ;
+    }
+   
+
+    
     useEffect(()=>{
         getCategories()
         getProducts()
@@ -72,5 +93,5 @@ export const ProductHook=()=>{
         filter()
     },[searchText,selectedCategory])
 
-    return {products,categories,Add,filter,ChangeText,ChangeCategory}
+    return {products,categories,Add,filter,ChangeText,ChangeCategory,next,previous}
 }

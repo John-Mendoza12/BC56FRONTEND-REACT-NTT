@@ -1,5 +1,6 @@
 
 
+import { PaginationHook } from "../../hooks/paginationHook"
 import { ProductHook } from "../../hooks/productHook"
 
 
@@ -7,7 +8,8 @@ import "./products.css"
 
 
 export const Products=()=>{
-    const {products,categories,Add,ChangeText,ChangeCategory} = ProductHook()
+    const {products,categories,Add,ChangeText,ChangeCategory,next,previous} = ProductHook()
+    const {hasNext,hasprevious}= PaginationHook()
     
     return(
     <>
@@ -39,6 +41,10 @@ export const Products=()=>{
                 </div>
             </div>
             ))}
+        </div>
+        <div style={{display:'flex',justifyContent:'space-between'}}>
+        <button disabled={hasprevious} onClick={previous}>Anterior</button>
+        <button disabled={hasNext} onClick={next}>Siguiente</button>
         </div>
     </div>
 </>)
