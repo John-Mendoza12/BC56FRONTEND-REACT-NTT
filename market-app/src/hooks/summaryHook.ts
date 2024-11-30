@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { IDistrict, initial, ISend } from "../interfaces/ISummary"
+import { IDistrict, initial, ISend, IShop } from "../interfaces/ISummary"
 import { useShopContext } from "../context/shopListContext"
 interface INav{
     setCheckSta:React.Dispatch<React.SetStateAction<boolean>>
@@ -8,7 +8,7 @@ interface INav{
 export const SummaryHook=(props:INav)=>{
 const [send,setSend]=useState<ISend>(initial)
 const [alert,setALert]=useState<boolean>(false)
-const {clearArray}= useShopContext();
+const {clearArray,array,updateItem}= useShopContext();
 const changeName=(event:React.ChangeEvent<HTMLInputElement>)=>{
     setSend({...send,name:event.target.value})
 }
@@ -71,7 +71,32 @@ const acceptChange=()=>{
     clearArray()
     props.setCheckSta(false)
 }
-return {send,changeName,changeLastName,changePhone,changeReference,changeAdress,changeDis,handleText,handleNumber,loadDis,submit,alert,acceptChange}
+const upItem=(index:number)=>{
+    const itemSel= array[index]
+    const req:IShop={
+        quantity: itemSel.quantity+1,
+        product: itemSel.product,
+        id: 0
+    }
+    updateItem(index,req)
+}
+const downItem=(index:number)=>{
+    const itemSel= array[index]
+    if(itemSel.quantity-1>=0){
+        const req:IShop={
+            quantity: itemSel.quantity-1,
+            product: itemSel.product,
+            id: 0
+        }
+        updateItem(index,req)
+    }
+
+}
+const Sum=()=>{
+   const total= array.reduce((acc,item)=>acc+item.quantity*item.product.price,0)
+   return total
+}
+return {send,changeName,changeLastName,changePhone,changeReference,changeAdress,changeDis,handleText,handleNumber,loadDis,submit,alert,acceptChange,upItem,downItem,Sum}
 
 
 

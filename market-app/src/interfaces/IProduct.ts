@@ -13,4 +13,5 @@ export interface ICategory{
 }
 export interface IProductList{
     products:IProduct[];
+    limit:number
 }

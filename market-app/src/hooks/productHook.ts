@@ -4,12 +4,14 @@ import { productsService } from "../services/productsService"
 import { useShopContext } from "../context/shopListContext"
 import { IShop } from "../interfaces/ISummary"
 
+
 export const ProductHook=()=>{
     const [products,setProducts]=useState<IProduct[]>([])
     const [data,setData]=useState<IProduct[]>([])
     const [categories,setCategories]=useState<ICategory[]>([])
     const [selectedCategory,setSelectedCategory]=useState("all")
     const [searchText,setSearchText]=useState("")
+
     const { addItem,updateItem,array } = useShopContext();
     const getProducts=async ()=>{
         try {
@@ -25,7 +27,7 @@ export const ProductHook=()=>{
             const data = await productsService.getCategories()
             setCategories(data)
         }catch (error) {
-            console.error("Error al cargar productos",error);
+            console.error("Error al cargar categorias",error);
             }
     }
     const Add=(item: IProduct)=>{
@@ -72,5 +74,5 @@ export const ProductHook=()=>{
         filter()
     },[searchText,selectedCategory])
 
-    return {products,categories,Add,filter,ChangeText,ChangeCategory}
+    return {products,categories,filter,ChangeText,ChangeCategory,getProducts,getCategories,searchText,selectedCategory,Add}
 }

@@ -1,40 +1,13 @@
 import { useShopContext } from "../../context/shopListContext";
 import { SummaryHook } from "../../hooks/summaryHook";
-import { IShop } from "../../interfaces/ISummary";
 import "./sumary.css"
 interface INav{
     setCheckSta:React.Dispatch<React.SetStateAction<boolean>>
 
 }
 export const Sumary=(props:INav)=>{
-    const { array,updateItem,removeItem } = useShopContext();
-    const {send,changeName,changeLastName,changePhone,changeReference,changeAdress,changeDis,handleText,handleNumber,loadDis,submit,alert,acceptChange} = SummaryHook(props);
-    const upItem=(index:number)=>{
-        const itemSel= array[index]
-        const req:IShop={
-            quantity: itemSel.quantity+1,
-            product: itemSel.product,
-            id: 0
-        }
-        updateItem(index,req)
-    }
-    const downItem=(index:number)=>{
-        const itemSel= array[index]
-        if(itemSel.quantity-1>=0){
-            const req:IShop={
-                quantity: itemSel.quantity-1,
-                product: itemSel.product,
-                id: 0
-            }
-            updateItem(index,req)
-        }
-
-    }
-    const Sum=()=>{
-       const total= array.reduce((acc,item)=>acc+item.quantity*item.product.price,0)
-       return total
-    }
-    
+    const { array,removeItem } = useShopContext();
+    const {send,changeName,changeLastName,changePhone,changeReference,changeAdress,changeDis,handleText,handleNumber,loadDis,submit,alert,acceptChange,upItem,downItem,Sum} = SummaryHook(props); 
     return(
         <>
         

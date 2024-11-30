@@ -8,7 +8,6 @@ import "./products.css"
 
 export const Products=()=>{
     const {products,categories,Add,ChangeText,ChangeCategory} = ProductHook()
-    
     return(
     <>
     <div className="body">

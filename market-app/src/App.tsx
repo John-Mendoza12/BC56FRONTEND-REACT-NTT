@@ -3,9 +3,9 @@ import { useState } from 'react'
 import './App.css'
 import { Footer } from './components/Footer/footer'
 import { NavBar } from './components/NavBar/navBar'
-import { ShopProvider } from './context/shopListContext'
 import { Products } from './pages/products/products'
 import { Sumary } from './pages/sumary/sumary'
+import { ShopProvider } from './context/shopProvider'
 
 
 function App() {
